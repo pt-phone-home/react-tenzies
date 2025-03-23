@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#root {
+  background-color: rgb(1, 1, 36);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 750px;
+  height: 750px;
+}
+
+
+.main {
+ height: 70%;
+ width: 70%;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.die-container {
+  height: 200px;
+  width: 100%;
+  display: grid;
+  grid-template: auto auto / repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.die {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.held {
+  background-color: green;
+}
+
+.invalid {
+  background-color: red;
+}
+
+.die:active {
+  scale: .97;
+}
+
+.roll-dice-button {
+  width: 50%;
+  padding: 15px 10px;
+  background-color: purple;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+}
+
+.start-again-button {
+  width: 50%;
+  padding: 15px 10px;
+  background-color: green;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+}
+
+.roll-dice-button:active {
+  scale: .97;
+}

@@ -1,0 +1,7 @@
+Making sure the user can only try to match one number...
+
+1. user selects a dice, turning it green, that number is saved as the current game number
+2. If user unselects that dice, the current game number is reset to null
+2a. for this to work, I need to know the value that is set and the id of the dice that set it
+3. From that point on, only dice that match the current game number can be selected, otherwise they will turn red for a
+second, with a message saying 'that is not the current game numer', before turning white again
