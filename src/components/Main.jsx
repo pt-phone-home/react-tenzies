@@ -4,8 +4,12 @@ import GameOver from "./GameOver";
 export default function Main() {
 
     const [arrayofDie, setArrayOfDie] = useState(generateAllNewDice()); 
-    const [gameOver, setGameOver] = useState(false);
-    const [currentGameNumber, setCurrentGameNumber] = useState(null);
+    let gameWon = false;
+
+    if (
+        arrayofDie.every(die => die.isHeld) && arrayofDie.every(die => die.value === arrayofDie[0].value)) {
+            gameWon = true;
+    }
 
     function generateAllNewDice() {
         let numbersArray = []
@@ -28,7 +32,7 @@ export default function Main() {
     })
 
     function startNewGame() {
-        setGameOver(false);
+        gameWon = false;
         setArrayOfDie(generateAllNewDice())
     }
 
@@ -40,39 +44,23 @@ export default function Main() {
                     value: die.isHeld? die.value : Math.floor(Math.random() * 6) +1,
                 }
             })
-            checkGameOver(newDice)
             return newDice
         })
     }
 
-    function checkGameOver(updatedDice) {
-        const allHeld = updatedDice.every((die) => {
-            return die.isHeld === true;
-        })
-       setGameOver(allHeld);
-    }
 
     function toggleHeld(id) {
-      updateCurrentGameNumber(id);
 
       setArrayOfDie((prev) => {
         const newDice = prev.map((die) => {
             return die.id === id ?
             {...die, isHeld: !die.isHeld} : die
         })
-        checkGameOver(newDice)
        return newDice
       })
       
     }
 
-    function updateCurrentGameNumber(id) {
-        const result = arrayofDie.filter((die) => {
-            return die.id === id;
-          })[0].value;
-          setCurrentGameNumber(result);
-         
-    }
 
     
     return (
@@ -80,13 +68,13 @@ export default function Main() {
             <main className="main">
                 <h1>Tenzies</h1>
                 <p>Roll until all dice are the same. Click on each die to freeze its current value between rolls</p>
-                {!gameOver ? <div className="die-container">
+                {!gameWon ? <div className="die-container">
                     {dieElements}
                 </div> : <GameOver /> }
-                {!gameOver && <button 
+                {!gameWon && <button 
                 onClick={rollDice}
                 className="roll-dice-button">Roll Dice</button>}
-                {gameOver && <button 
+                {gameWon && <button 
                 onClick={startNewGame}
                 className="start-again-button">Start New Game</button>}
             </main>
