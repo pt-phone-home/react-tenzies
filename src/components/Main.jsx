@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Die from "./Die"
 import GameOver from "./GameOver";
+import Confetti from 'react-confetti'
+
 export default function Main() {
 
-    const [arrayofDie, setArrayOfDie] = useState(generateAllNewDice()); 
+    const [arrayofDie, setArrayOfDie] = useState(() => generateAllNewDice()); 
     let gameWon = false;
 
     if (
@@ -66,8 +68,9 @@ export default function Main() {
     return (
         <>
             <main className="main">
-                <h1>Tenzies</h1>
-                <p>Roll until all dice are the same. Click on each die to freeze its current value between rolls</p>
+                {gameWon && <Confetti />}
+                {!gameWon && <h1 className="app-title">Tenzies</h1> }
+                {!gameWon && <p className="app-description">Roll until all dice are the same. Click on each die to freeze its current value between rolls</p>}
                 {!gameWon ? <div className="die-container">
                     {dieElements}
                 </div> : <GameOver /> }

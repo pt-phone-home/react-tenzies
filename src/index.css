@@ -89,3 +89,12 @@ body {
 .roll-dice-button:active {
   scale: .97;
 }
+
+.app-title {
+  font-size: 46px;
+}
+
+.app-description {
+  font-size: 20px;
+  text-align: center;
+}
